@@ -1,0 +1,38 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+
+# Ignore dependency directories
+node_modules/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor config files
+.idea/
+.vscode/
+
+# Ignore logs
+*.log
+
+# Ignore the Python cache directory
+*.egg-info/
+
+# Ignore test results
+*.coverage
+nosetests.xml
+coverage.xml
+*.cover
+
+# Ignore other files you may not want to commit
+*.env
+*.sqlite3
+*.log
