@@ -1,125 +1,119 @@
-# LineAlert
-
-**LineAlert** is a cutting-edge cybersecurity platform designed to monitor and protect operational technology (OT) systems, with a focus on small municipalities. By providing real-time alerts and adaptive learning, it ensures the safety of critical infrastructure and protects lives.
-
----
-
-## Prerequisites
-To run **LineAlert**, you need the following:
-
-- Python 3.8+
-- Required libraries (can be installed via `pip install -r requirements.txt`)
-
-Make sure to configure your OT systems accordingly for integration.
-
----
-
-## Setup & Usage
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/anthonyedgar30000/linealert.git
-    cd linealert
-    ```
-
-2. Install the dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. Modify the configuration:
-   - Open the sample configuration file (`config_sample.yaml`) and adjust the settings according to your OT network.
-   - Ensure that you specify the correct log file paths and any system-specific variables.
-
-4. Run LineAlert:
-    ```bash
-    python linealert.py
-    ```
-
-5. Confirm it's working:
-   - You should see real-time alerts in the form of notifications or logs indicating that the system is monitoring your OT systems.
-   - Example output:
-     ```
-     [ALERT] [2025-04-07 15:30] Potential breach detected in OT system.
-     ```
-
----
-
-## Troubleshooting
-
-### 1. **Permission Denied Errors**
-   - Make sure your configuration files have the correct permissions:
-     ```bash
-     chmod 755 config/
-     chmod 644 config/config_sample.yaml
-     ```
-
-### 2. **Alerts Not Triggering**
-   - Double-check your alert configuration and ensure that the system is properly set up to monitor the correct log files.
-   - If your logs are not updating, verify that the log file paths are correct in your configuration.
-
----
-
-## Supplementary Materials
-
-### Documentation
-- **[System Design](docs/system_design.md):** A detailed description of the system architecture.
-- **[Architecture Diagram](docs/architecture_diagram.png):** A visual representation of the system.
-- **[Sample Configuration](config/config_sample.yaml):** A sample configuration file for setting up the system.
-
-### LineAlert
+LineAlert
 LineAlert is a cutting-edge cybersecurity platform designed to monitor and protect operational technology (OT) systems, with a focus on small municipalities. By providing real-time alerts and adaptive learning, it ensures the safety of critical infrastructure and protects lives.
 
----
+Why LineAlert is Different
+Why Current OT Cybersecurity Solutions Aren't Enough
+The traditional approach to OT security has primarily been focused on expensive, complex solutions like firewalls, intrusion detection systems (IDS), and other perimeter-based security tools. While these solutions are crucial, they often come with major limitations in the context of Operational Technology (OT) environments. Here's why:
 
-## How to Contribute
+Cost-Prohibitive: Traditional OT cybersecurity tools are expensive, often unaffordable for smaller organizations or municipalities.
 
+Complex Setup and Maintenance: Tools from big players require extensive configuration and are difficult to maintain, making them impractical for small-scale OT environments.
+
+Limited Real-Time Monitoring: Many OT environments need real-time alerts, which traditional security systems fail to provide.
+
+Lack of Tailored Solutions: Most tools are designed for IT, not OT, which means they don't support OT-specific protocols and needs.
+
+Why LineAlert is the Answer
+LineAlert was created to address these gaps by offering a passive, real-time monitoring system designed specifically for OT environments. Here's how it addresses the limitations of traditional OT security solutions:
+
+Affordable and Scalable: Unlike costly proprietary systems, LineAlert provides an affordable, scalable solution designed for small municipalities.
+
+Real-Time Monitoring: LineAlert monitors log files in real-time, providing timely alerts that help operators respond to potential threats and failures.
+
+Passive Monitoring: LineAlert works without interfering with OT systems or network traffic, ensuring seamless integration without causing disruptions.
+
+Tailored for OT Needs: Designed specifically for OT systems, LineAlert supports the unique protocols and operational behavior of industrial control systems (ICS), SCADA systems, and more.
+
+Customizable Alerts: Users can define their own triggers based on keywords or patterns, giving them granular control over alert generation.
+
+Easy Integration and Low Overhead: LineAlert integrates easily with existing OT systems, requiring minimal infrastructure changes.
+
+Why LineAlert is Positioned at the Edge
+One of the key differentiators of LineAlert is its unique positioning at the edge of the network—right next to the OT systems it is designed to monitor. Traditional OT security systems like firewalls and intrusion detection systems (IDS) are typically deployed in the core of the network or on the perimeter. However, this can cause high latency, complex configurations, and higher risk of disruption to critical OT operations.
+
+The Edge Advantage:
+By positioning LineAlert at the network edge, close to the OT devices and systems, it offers real-time monitoring and alerting that is:
+
+Non-Intrusive: Since it’s positioned outside the core infrastructure, LineAlert does not interfere with or disrupt the operational technology systems. It’s a passive solution that quietly monitors and alerts based on the data it collects, without modifying the flow of operations.
+
+Low Latency: Operating at the edge of the network means LineAlert can detect and respond to threats in real-time. This is especially crucial in OT environments where time-sensitive threats, such as machine malfunctions or cyber-attacks, need to be addressed immediately to avoid catastrophic consequences.
+
+Scalable and Flexible: By being positioned closer to the devices and systems that need to be monitored, LineAlert can be easily deployed across different parts of the network, whether in a single facility or across multiple locations, without the need for complex network reconfigurations.
+
+Optimized for OT: Unlike traditional security tools, which are often focused on IT-centric threats, LineAlert is designed specifically for OT environments, ensuring that it works with OT protocols, ICS, SCADA systems, and other industrial devices.
+
+Why Edge Placement Matters in OT Cybersecurity
+Protection from Insider Threats: OT systems are often more vulnerable to insider threats or malicious activities from within the organization. By monitoring at the edge, LineAlert can quickly identify abnormal activity on local systems before it spreads to the core network.
+
+Efficiency in Identifying Anomalies: Since it monitors system behavior and log files directly from the OT devices at the edge, it can detect subtle anomalies that might not be visible to core security systems. This allows LineAlert to flag potential issues before they escalate into significant problems.
+
+Real-Time Decision Making: The closer LineAlert is to the actual systems and devices being monitored, the faster it can process and alert operators to any issues. This immediate response is crucial in OT environments where downtime or delays can result in significant costs or safety risks.
+
+Conclusion: Why LineAlert at the Edge is the Answer
+The traditional approach of monitoring OT systems from the core of the network or on the perimeter simply doesn’t work as effectively in real-time, non-intrusive, and low-latency scenarios that are critical in OT environments. LineAlert’s edge placement ensures that it can operate seamlessly with OT systems, providing the real-time monitoring, immediate alerts, and scalability that are essential for protecting critical infrastructure and saving lives.
+
+By placing LineAlert at the edge, you're not just getting a cybersecurity solution—you’re gaining a game-changer that integrates directly with the OT systems, offering immediate, relevant, and actionable alerts without disrupting daily operations.
+
+Setup & Usage
+Clone the repository:
+
+bash
+Copy
+git clone https://github.com/anthonyedgar30000/linealert.git
+cd linealert
+Install the dependencies:
+
+bash
+Copy
+pip install -r requirements.txt
+Modify the configuration:
+
+Open the sample configuration file (config_sample.yaml) and adjust the settings according to your OT network.
+
+Ensure that you specify the correct log file paths and any system-specific variables.
+
+Run LineAlert:
+
+bash
+Copy
+python linealert.py
+Confirm it's working:
+
+You should see real-time alerts in the form of notifications or logs indicating that the system is monitoring your OT systems.
+
+Example output:
+
+css
+Copy
+[ALERT] [2025-04-07 15:30] Potential breach detected in OT system.
+How to Contribute
 We welcome contributions from developers, security experts, and OT professionals! To contribute:
 
-1. Fork the repository.
-2. Create a branch for your feature or bugfix:
-    ```bash
-    git checkout -b feature-name
-    ```
-3. Make your changes, ensuring that you follow our coding standards:
-    - Use descriptive commit messages.
-    - Follow PEP 8 for Python code.
+Fork the repository.
 
-4. Submit a pull request with a clear description of the changes.
+Create a branch for your feature or bugfix:
 
-**Note:** Contributions related to OT cybersecurity, real-time monitoring enhancements, and additional alerting mechanisms are highly encouraged!
+bash
+Copy
+git checkout -b feature-name
+Make your changes, ensuring that you follow our coding standards:
 
----
+Use descriptive commit messages.
 
-## FAQ
+Follow PEP 8 for Python code.
 
-### 1. **How do I add more custom alerts?**
-   - You can add custom triggers by modifying the `linealert.py` script. Search for the section that handles the keyword triggers and extend it by adding new conditions.
+Submit a pull request with a clear description of the changes.
 
-### 2. **Can I run LineAlert on a Raspberry Pi?**
-   - Yes, LineAlert can run on a Raspberry Pi. However, make sure that your Pi has sufficient processing power to handle the data streams from OT systems. We recommend using Pi 4 or newer for better performance.
+Note: Contributions related to OT cybersecurity, real-time monitoring enhancements, and additional alerting mechanisms are highly encouraged!
 
----
+License
+This project is licensed under the Apache 2.0 License.
 
-## Getting Help
+Roadmap and Future Development
+LineAlert is under active development. Some of the features we are planning to add include:
 
-If you encounter issues or need help, you can:
-- Check the [GitHub Issues](https://github.com/anthonyedgar30000/linealert/issues) for common bugs and resolutions.
-- Post a question in [GitHub Discussions](https://github.com/anthonyedgar30000/linealert/discussions).
-- Reach out via [email](mailto:anthonyedgar30000@gmail.com).
+Enhanced anomaly detection for better threat identification.
 
----
+Integration with additional OT systems.
 
-## License
-
-This project is licensed under the [Apache 2.0 License](LICENSE).
-
----
-
-## Next Steps & Future Development
-
-We are actively working on improving LineAlert's functionality and expanding its capabilities to better serve OT environments. The next major updates will include:
-- Enhanced anomaly detection for better threat identification.
-- Integration with additional OT systems.
-- UI improvements for OT operators.
-
+UI improvements for OT operators.
