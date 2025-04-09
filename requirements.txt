@@ -1,4 +1,10 @@
 requests
 pandas
 numpy
-azure-sdk
+azure-identity
+azure-storage-blob
+azure-mgmt-resource
+azure-mgmt-compute
+azure-mgmt-network
+azure-mgmt-storage
+
