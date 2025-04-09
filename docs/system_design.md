@@ -1,22 +1,48 @@
 # LineAlert System Design
 
 ## Overview
-LineAlert is a cutting-edge cybersecurity platform designed to protect Operational Technology (OT) systems. This document provides an overview of the system's architecture and key components.
+
+LineAlert is a cutting-edge open-source cybersecurity platform designed to passively monitor Operational Technology (OT) systems. This document outlines the architecture and key components of the system, now with integrated AI-powered real-time log analysis using GPT.
+
+---
 
 ## Key Components
-- **Data Collection**: The system continuously collects data from OT devices (e.g., PLCs, SCADA systems).
-- **Data Analysis**: The data is analyzed for anomalies or cybersecurity threats.
-- **Alerts**: Real-time alerts are generated when suspicious activity is detected.
-- **Adaptive Learning**: The system learns from historical data to improve detection accuracy.
 
-## Architecture Diagram
-Below is the architecture diagram for the LineAlert system:
+- **Passive Data Collection**  
+  Monitors logs from OT network interfaces (e.g., from firewalls, switches, or Linux syslog) without injecting traffic.
 
-![System Architecture](architecture_diagram.png)
+- **AI-Powered Log Analysis**  
+  Uses OpenAI’s GPT to analyze logs in real-time, identify suspicious behavior, and generate human-readable insights.
 
-## Deployment
-The system is designed to be deployed in small municipalities and critical infrastructure environments. It is flexible and can integrate with existing OT infrastructure.
+- **Live Alerts**  
+  Detects failed logins, irregular heartbeat events, and other anomalies. Sends immediate alerts via console output (future support for email, Slack, etc. planned).
+
+- **Field-Ready Hardware**  
+  Designed to run efficiently on resource-constrained hardware like Raspberry Pi or fanless industrial PCs.
+
+- **Custom Profiles**  
+  Tailors detection rules for different kinds of OT equipment (PLCs, RTUs, sensors).
+
+---
+
+## GPT Integration Details
+
+- **Environment-based Key Loading**  
+  The OpenAI API key is stored in `~/.alertline.env` for secure access and is loaded at runtime.
+
+- **Models Used**  
+  Currently supports `gpt-3.5-turbo` with optional support for more advanced models.
+
+- **Real-Time Triggering**  
+  Uses the Python `watchdog` module to monitor log files and send new lines to GPT as they appear.
+
+- **Prompt Engineering**  
+  Prompts are optimized to summarize log context, flag anomalies, and explain their implications in plain English.
+
+---
 
 ## Future Enhancements
-- **Cloud Integration**: Plans for integrating cloud analytics for enhanced scalability.
-- **AI Models**: Further development of machine learning models to better identify and predict threats.
+
+- Add support for cloud push alerts (via webhook/email/SIEM integration)
+- Train local models for offline anomaly detection
+- Add device fingerprinting for OT traffic baseline monitoring
