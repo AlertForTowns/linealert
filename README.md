@@ -1,66 +1,66 @@
-# LineAlert 🚨
+# LineAlert
 
-LineAlert is an open-source project designed to passively monitor OT (Operational Technology) environments with minimal resource usage and maximum public impact. Built for small municipalities and industrial sites, LineAlert aims to provide real-time insights into system behavior and potential security issues — all without disrupting operations.
+**LineAlert** is a lightweight, field-ready cybersecurity monitoring and profiling system purpose-built to protect public-serving infrastructure such as municipal water treatment plants, solar fields, and smart city installations.
 
-## ✅ Key Features
+## 🚀 Purpose
+LineAlert was designed to help small municipalities and public institutions monitor their operational technology (OT) environments **passively and proactively**, without needing deep cybersecurity expertise or expensive infrastructure.
 
-- 📡 **Passive Monitoring** — No network injection, no interference. Just observation.
-- 🤖 **AI-Powered Log Analysis** — Real-time log insights using GPT for anomaly detection and human-readable summaries.
-- 🕵️ **Live Alerts** — Detects and highlights suspicious activity such as invalid SSH login attempts or heartbeat anomalies.
-- 💻 **Field-Ready** — Designed to run on minimal hardware like Raspberry Pi.
-- 🧠 **Customizable Profiles** — Tailor alerts to the specific OT systems in your environment.
+## 🧠 Key Features
 
-## ⚙️ Current Functionality
+### ✅ Auto-Profile Builder
+- Parses `.pcap` packet capture files
+- Detects common protocols (TCP, UDP, ICMP, Modbus, etc.)
+- Extracts source/destination IPs, ports, byte counts, packet stats
+- Generates a machine-readable behavioral profile (`new_profile.json`)
 
-- Monitors `/var/log/syslog` in real-time
-- Detects login failures, unusual patterns, and heartbeat reports
-- Uses GPT (via OpenAI API) to interpret log meaning and surface potential threats
-- Logs and displays alerts on screen in real-time
+### 📸 Snapshot Limiter & Local Cleanup
+- Automatically takes packet snapshots on suspicious activity
+- Limits number of snapshots per hour to avoid disk abuse
+- Automatically deletes snapshots after a retention window (default: 24h)
+- Supports premium features: `.lasnap` encrypted backups + cloud upload
 
-## 🧠 GPT Integration
+### 🔐 Proprietary Snapshot Format (Pro Tier)
+- Future `.lasnap` files will be encrypted and optionally cloud-synced
+- Allows for safe transfer and remote diagnostics
+- Represents an IP asset for licensing, upselling, and trust-building
 
-LineAlert uses GPT (OpenAI) to:
-- Parse and understand log data contextually
-- Detect subtle behavioral changes that static tools might miss
-- Provide human-readable summaries of log events
-
-The API key is stored securely in a `.env` file, and the project is compatible with OpenAI's legacy `0.28.0` Python SDK.
-
-## 🌐 Use Cases
-
-- Municipal water treatment
-- Solar fields
-- Industrial automation sites
-- Any system with OT equipment that deserves protection
-
-## ⚙️ Quick Start
-
-```bash
-# Clone the repo
-git clone https://github.com/your-org/linealert.git
-cd linealert
-
-# Install dependencies
-sudo pip3 install openai python-dotenv watchdog
-
-# Set up your .env file
-nano ~/.alertline.env
-# Add: OPENAI_API_KEY=sk-...
-
-# Run the monitoring tool
-sudo -E python3 log_gpt.py
+## 📦 Folder Structure
+```
+linealert/
+├── auto_profile/
+│   ├── builder.py               # Auto profile logic
+│   └── snapshot_limiter.py     # Snapshot management
+├── snapshots/                  # Where snapshots are saved
+├── sample.pcap                 # Test packet capture
+├── profile_gpt.py              # CLI wrapper for profiling
+├── new_profile.json            # Output profile
+├── README.md                   # You're here
+└── ...
 ```
 
-## 📍 Roadmap
+## 🛠️ How to Use
+```bash
+python3 profile_gpt.py --pcap sample.pcap --output new_profile.json
+```
 
-- Alert storage & forwarder (syslog/export options)
-- Web interface/dashboard
-- Profile-based alert tuning
-- Offline GPT support (via local LLM)
+## 💡 Vision
+We believe even the smallest towns deserve enterprise-grade protection. LineAlert is part of a larger mission to keep critical infrastructure safe, transparent, and **accountable to the public**.
+
+## ✍️ Author
+Built by someone in the trenches, not a suit in a boardroom.
+This project exists to save lives.
+
+## ⚖️ License
+Apache 2.0
+
+## 🛣️ Roadmap
+- [x] PCAP parser & profiler
+- [x] Snapshot limiter + cleanup
+- [ ] `.lasnap` encrypted snapshots
+- [ ] Cloud backup integration
+- [ ] Behavioral anomaly detection engine
+- [ ] Drag-and-drop web interface
 
 ---
-
-> 💡 *Built by Anthony Edgar for the people — because even small towns deserve big protection.*
-
----
-
+> Everybody’s got a story that could break your heart.  
+> That’s why we protect the line.
