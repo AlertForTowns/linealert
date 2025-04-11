@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-04-11T12:31:50Z",
+  "device": "Simulated PLC-1",
+  "protocol": "Modbus",
+  "event": "Unauthorized coil write",
+  "severity": "high"
+}

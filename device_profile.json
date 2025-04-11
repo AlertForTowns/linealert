@@ -1,0 +1,12 @@
+{
+  "device": "Simulated PLC-1",
+  "protocol": "Modbus",
+  "expected_behavior": [
+    "read coils",
+    "read registers"
+  ],
+  "flagged_behavior": [
+    "Unauthorized coil write"
+  ],
+  "severity": "high"
+}

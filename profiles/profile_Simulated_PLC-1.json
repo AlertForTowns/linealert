@@ -1,0 +1,14 @@
+{
+  "device": "Simulated PLC-1",
+  "protocols_seen": [
+    "Modbus"
+  ],
+  "event_types": [
+    "Unauthorized coil write"
+  ],
+  "severity_levels": [
+    "high"
+  ],
+  "first_seen": "2025-04-11T12:31:50Z",
+  "last_seen": "2025-04-11T12:31:50Z"
+}

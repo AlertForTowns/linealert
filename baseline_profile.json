@@ -1,0 +1,8 @@
+{
+  "device": "Simulated PLC-1",
+  "protocol": "Modbus",
+  "allowed_events": [
+    "Read coil",
+    "Write register"
+  ]
+}
