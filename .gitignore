@@ -36,3 +36,6 @@ coverage.xml
 *.env
 *.sqlite3
 *.log
+
+# Ignore LineAlert snapshot files
+*.lasnap
