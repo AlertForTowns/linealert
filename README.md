@@ -1,50 +1,72 @@
-## LineAlert
+# LineAlert
 
-LineAlert is a lightweight, field-ready cybersecurity monitoring and profiling system purpose-built to protect public-serving infrastructure such as municipal water treatment plants, solar fields, and smart city installations.
+**Passive OT traffic profiling and anomaly detection** — built for small-town infrastructure.
 
-🚨 **This is not a toy project.** LineAlert is built to solve a real-world gap in passive, non-invasive OT cybersecurity monitoring — something that has not been properly addressed by traditional IT security tools.
+No agents. No probes. No cloud. Just `.pcap` snapshots → profiles → alerts.
 
-### 🎯 Purpose
-LineAlert was designed to help small municipalities and public institutions monitor their operational technology (OT) environments passively and proactively, without needing deep cybersecurity expertise or expensive infrastructure.
+---
 
-### 🔑 Key Features
+🛠️ **MVP Now Live**
 
-#### ✅ Auto-Profile Builder
-- Parses `.pcap` packet capture files
-- Detects common protocols (TCP, UDP, ICMP, Modbus, etc.)
-- Extracts source/destination IPs, ports, byte counts, packet stats
-- Generates a machine-readable behavioral profile (`new_profile.json`)
+The core LineAlert snapshot pipeline is complete:
+- Generate `.lasnap` snapshots from `.pcap` traffic
+- Auto-profile OT devices and behavior (Modbus supported)
+- Decrypt and view snapshot contents via CLI
+- Flag anomalies compared to a baseline profile
 
-#### 🧠 Snapshot Limiter & Local Cleanup
-- Automatically takes packet snapshots on suspicious activity
-- Limits number of snapshots per hour to avoid disk abuse
-- Automatically deletes snapshots after a retention window (default: 24h)
-- Supports premium features: `.lasnap` encrypted backups + cloud upload
+➡️ [See how it works](docs/how_it_works.md)
 
-#### 🔐 Proprietary Snapshot Format (Pro Tier)
-- Future `.lasnap` files will be encrypted and optionally cloud-synced
-- Allows for safe transfer and remote diagnostic inspections
-- Represents an IP asset for licensing, upselling, and trust-building
+This release is focused on small-town infrastructure and offline visibility.  
+Feedback and contributions welcome.
 
-### 📁 Folder Structure
-```
-linealert/
-├── auto_profile/            # Auto profile logic
-│   └── snapshot_limiter.py  # Snapshot management
-├── baseline_profile.json    # Sample baseline
-├── decrypted_snapshot.json  # Decrypted snapshot
-├── device_profile.json      # AI output for profiling
-├── profile_gen.py           # CLI wrapper profile
-├── new_profile.json         # Output profile
-├── requirements.txt         # Python dependencies
-├── linealert.py             # Wire up modules here
-```
+---
 
-### 🛠️ Next Steps (In Progress)
-- 📡 Webhook Alert Integration for SOC/NOC compatibility
-- 🖥️ CLI Snapshot Viewer and Web Viewer UI polish
-- 🔒 `.lasnap` AES encryption + integrity validation
-- 📊 Auto-Learn mode: adapt profiles based on operator feedback
-- 🧠 Profile refinement engine (statistical / ML methods)
-- 🧪 Test suite for regression and live mode stability
-- 📝 Publish full docs and examples for municipality outreach
+## 🚦 Why LineAlert?
+
+Industrial networks were never designed with security in mind.  
+But most tools that help monitor OT environments are:
+- Too expensive
+- Too invasive
+- Too tied to the cloud or vendor lock-in
+
+LineAlert is a free and open-source tool built for environments with:
+- **No endpoint access**
+- **No monitoring**
+- **No budget for enterprise OT gear**
+
+---
+
+## 🔄 What It Does
+
+1. Takes in `.pcap` traffic captures
+2. Creates encrypted `.lasnap` snapshots
+3. Profiles OT device behavior
+4. Flags unexpected or unusual traffic
+5. Lets you review snapshot metadata via CLI or (soon) web UI
+
+---
+
+## 🔐 Security Principles
+
+- No agents, no probes, no endpoint access
+- AES encryption for snapshots
+- Local-only by default (no outbound traffic)
+- Webhook alerts planned for secure integrations
+
+---
+
+## 📁 Project Structure
+
+```bash
+.
+├── snapshot_generator.py         # Converts PCAP to .lasnap snapshots
+├── decrypt_snapshot.py           # Decrypts .lasnap files
+├── view_snapshot.py              # CLI viewer for snapshot contents
+├── auto_profile.py               # Builds behavior profiles (e.g. Modbus)
+├── compare_to_baseline.py        # Flags anomalies against expected behavior
+├── send_alert.py                 # MVP webhook-ready alert sender
+├── snapshot_viewer_web.py        # Flask UI (in development)
+├── docs/
+│   ├── how_it_works.md           # Pipeline & overview
+│   └── roadmap.md                # Project direction and goals
+└── snapshots/                    # Saved or test .lasnap files
