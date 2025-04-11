@@ -1,0 +1,9 @@
+requests==2.32.3
+pandas==2.2.3
+numpy==2.2.4
+azure-identity
+azure-storage-blob
+azure-mgmt-resource
+azure-mgmt-compute
+azure-mgmt-network
+azure-mgmt-storage

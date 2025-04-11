@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: pyshark
+Version: 0.6
+Summary: Python wrapper for tshark, allowing python packet parsing using wireshark dissectors
+Home-page: https://github.com/KimiNewt/pyshark
+Author: KimiNewt
+Author-email: UNKNOWN
+License: MIT
+Keywords: wireshark capture packets parsing packet
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Dist: lxml
+Requires-Dist: termcolor
+Requires-Dist: packaging
+Requires-Dist: appdirs
+
+Python wrapper for tshark, allowing python packet parsing using wireshark dissectors.
+
+See https://github.com/KimiNewt/pyshark/ for documentation.
+
+
