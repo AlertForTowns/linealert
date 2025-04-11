@@ -39,3 +39,12 @@ linealert/
 ├── requirements.txt         # Python dependencies
 ├── linealert.py             # Wire up modules here
 ```
+
+### 🛠️ Next Steps (In Progress)
+- 📡 Webhook Alert Integration for SOC/NOC compatibility
+- 🖥️ CLI Snapshot Viewer and Web Viewer UI polish
+- 🔒 `.lasnap` AES encryption + integrity validation
+- 📊 Auto-Learn mode: adapt profiles based on operator feedback
+- 🧠 Profile refinement engine (statistical / ML methods)
+- 🧪 Test suite for regression and live mode stability
+- 📝 Publish full docs and examples for municipality outreach
