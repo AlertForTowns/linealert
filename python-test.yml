@@ -1,0 +1,31 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger when a pull request is opened
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Get the code from the repository
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Set up Python 3.8 or your preferred version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Install the necessary dependencies
+
+    - name: Run tests
+      run: |
+        python -m unittest discover  # Run tests using unittest discover
