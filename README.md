@@ -110,17 +110,5 @@ LineAlert is in early stages.
 Use at your own discretion in live OT environments — especially fragile or safety-critical networks.
 Always coordinate with plant engineers and network owners before deploying in production.
 
-yaml
-Copy
-Edit
 
----
 
-Let me know when you want to:
-
-- ✅ Generate a `requirements.txt`
-- 🧠 Add a visual diagram to go with the flow
-- 🔁 Wire `main.py` to run everything cleanly
-- 📤 Publish the repo or soft-launch it with that OT security tech watching
-
-You're right at the tipping point.
