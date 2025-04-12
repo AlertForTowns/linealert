@@ -1,86 +1,126 @@
-# LineAlert
+# ⚡ LineAlert
 
-LineAlert is an open-source tool designed to passively monitor industrial control system (ICS) and operational technology (OT) networks — such as those used in small municipalities, water treatment facilities, and other critical infrastructure environments.
+**Passive OT Network Monitoring for the Real World.**  
+No logging? No visibility? No budget?  
+LineAlert listens silently, learns what's normal, and alerts when it’s not.
 
-It aims to help detect unauthorized behavior or anomalies by building and comparing traffic behavior profiles over time.
-
----
-
-## Key Features
-
-- **Passive Network Sniffing**  
-  Captures Modbus TCP (port 502) and other relevant ICS/OT traffic without injecting packets or disrupting the network.
-
-- **Snapshot Generation**  
-  Creates `.lasnap` files that represent network activity during a configurable time window. Snapshots are encrypted at rest using AES.
-
-- **Auto-Profiling**  
-  Extracts behavioral patterns from traffic (e.g., read/write function codes, device IDs) and builds baseline profiles for each device.
-
-- **Anomaly Detection**  
-  Compares new traffic against the baseline to flag deviations and optionally trigger alerts (via webhook or console log).
-
-- **Snapshot Viewer CLI**  
-  Decrypt and inspect `.lasnap` files manually or as part of automated pipelines.
+Built for fragile, under-monitored industrial systems that actually run society.
 
 ---
 
-## Components
+## 🧠 What It Does
 
-- `snapshot_generator.py` – Captures live traffic and generates snapshots.
-- `snapshot_encryptor.py` – Encrypts snapshots using AES.
-- `decrypt_snapshot.py` – Decrypts `.lasnap` files for inspection or analysis.
-- `auto_profile.py` – Builds a profile from historical or live data.
-- `compare_to_baseline.py` – Compares current behavior to baseline.
-- `send_alert.py` – Sends alert data (e.g., webhook, log, or email).
-- `view_snapshot.py` – CLI viewer for decrypted snapshots.
+LineAlert is a lightweight, modular tool that:
 
----
-
-## Example Use Case
-
-1. Set up a Raspberry Pi with a SPAN port or tap on a Modbus TCP network.
-2. Schedule periodic snapshots using `systemd` or cron.
-3. Encrypt and upload snapshots to a secure location.
-4. Auto-profile device behavior.
-5. Trigger alerts when traffic deviates from the expected profile.
+- 📸 Captures passive snapshots of OT traffic (`.lasnap` format)
+- 🔐 Encrypts snapshots using AES (at-rest protection)
+- 🧠 Learns normal device behavior over time (auto-profiling)
+- ⚠️ Detects anomalies via snapshot diffing
+- 🌐 Optionally uploads snapshots to secure cloud storage
+- 🧾 Maintains a live asset inventory — with no active scans
+- 🚨 Sends alerts when patterns break, even without threat intel
 
 ---
 
-## Goals
+## 🔧 Key Modules
 
-- Encourage better visibility into ICS/OT environments that often lack basic monitoring.
-- Provide a starting point for sysadmins and OT engineers looking to build their own monitoring and alerting workflows.
+| File                  | Role                                  |
+|-----------------------|---------------------------------------|
+| `main.py`             | Orchestrates packet capture and flow  |
+| `asset_discovery.py`  | Tracks and updates live OT asset inventory |
+| `auto_profile.py`     | Builds behavioral baselines from `.lasnap` |
+| `send_alert.py`       | Triggers alerts via webhook or logs   |
+| `snapshot_viewer.py`  | CLI tool to decrypt and explore snapshots |
+| `snapshot_encryptor.py` | AES-based `.lasnap` protection     |
 
----
-
-## Contributing
-
-This is an early-stage project. Feedback from OT security professionals, sysadmins, and ICS integrators is especially welcome.
-
-If you’ve worked in these environments, we’d love help with:
-- Improving protocol coverage
-- Fine-tuning profiling logic
-- Real-world feedback on deployment
+Each module has a single concern.  
+Together, they operate like a **relational system** — assets, snapshots, profiles, and alerts flow like data between tables.
 
 ---
 
-## Known Gaps / To-Do
+## 🧠 Design Philosophy
 
-- Protocol support is limited (Modbus TCP prioritized for now).
-- No GUI (CLI-based only).
-- Currently built for Python 3.10+ on Ubuntu.
-- Limited error handling / logging.
+LineAlert is built using principles from both **software engineering** and **OT network architecture**:
 
----
+- **Separation of Concerns** → Each module has a distinct role, like services in a layered control system  
+- **Separation of Roles** → Mirrors real OT environments: sensor, logger, analyst, alert  
+- **Relational Thinking** → Inspired by the structure of relational databases, enabling composability and clarity
 
-## Real-World Context
-
-This tool was inspired by high-profile incidents such as the 2021 Oldsmar, Florida water treatment facility breach, where attackers remotely accessed SCADA systems. Many small utilities still lack visibility into network traffic and behavior anomalies — LineAlert attempts to fill that gap with a lightweight, field-ready solution.
+📄 Full breakdown in the [Technical Appendix](./TECHNICAL_APPENDIX.md)
 
 ---
 
-## License
+## 🔄 How It Works (High-Level Flow)
 
-Apache 2.0 – Use freely, contribute if you like.
+```text
+[ Passive Packet Capture ]
+            ↓
+[ AES-encrypted .lasnap Snapshot ]
+            ↓
+[ Auto-Profile Behavior ]
+            ↓
+[ Diff Snapshot vs. Baseline ]
+            ↓
+[ Alert if Anomaly ]
+            ↓
+[ Optional Upload to Cloud Blob ]
+🚀 Getting Started
+Requirements:
 
+Python 3.8+
+
+scapy, cryptography, psutil, argparse, etc.
+
+Quick Start:
+
+bash
+Copy
+Edit
+git clone https://github.com/yourhandle/linealert.git
+cd linealert
+pip install -r requirements.txt
+sudo python3 main.py --iface eth0
+Optional:
+Configure environment variables for AES key and cloud blob upload path.
+
+🔭 Roadmap
+ Auto-learn mode (adaptive profiling)
+
+ Snapshot diff scoring + severity ranking
+
+ Web-based viewer/dashboard (React or Flask)
+
+ DNP3, BACnet protocol support
+
+ Role inference (HMI / PLC / sensor tagging)
+
+ CVE fingerprinting of legacy device behavior
+
+🤝 Feedback & Contributions
+LineAlert is FOSS and in active development.
+Pull requests, issue reports, and real-world OT test data are welcome.
+
+You can also contact me if you're an OT professional and want to stress test the pipeline or suggest features.
+
+📜 License
+Apache 2.0 — because tools like this should be free to build, use, and remix.
+
+⚠️ Disclaimer
+LineAlert is in early stages.
+Use at your own discretion in live OT environments — especially fragile or safety-critical networks.
+Always coordinate with plant engineers and network owners before deploying in production.
+
+yaml
+Copy
+Edit
+
+---
+
+Let me know when you want to:
+
+- ✅ Generate a `requirements.txt`
+- 🧠 Add a visual diagram to go with the flow
+- 🔁 Wire `main.py` to run everything cleanly
+- 📤 Publish the repo or soft-launch it with that OT security tech watching
+
+You're right at the tipping point.
