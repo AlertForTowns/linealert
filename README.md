@@ -1,117 +1,81 @@
-# ⚡ LineAlert
+# LineAlert
 
-**Passive OT Network Monitoring for the Real World.**  
-No logging? No visibility? No budget?  
-LineAlert listens silently, learns what's normal, and alerts when it’s not.
+## Overview
 
-Built for fragile, under-monitored industrial systems that actually run society.
+LineAlert is a comprehensive cybersecurity monitoring tool designed to protect public-serving infrastructure, such as municipal water systems and solar fields, through passive, field-ready monitoring. This tool focuses on providing small municipalities with affordable, reliable, and cutting-edge cybersecurity solutions.
 
 ---
 
-## 🧠 What It Does
+## For OT Professionals
 
-LineAlert is a lightweight, modular tool that:
+LineAlert is specifically designed to protect operational technology (OT) environments without interrupting daily operations. It’s tailored for environments where traditional IT security tools may not be a good fit.
 
-- 📸 Captures passive snapshots of OT traffic (`.lasnap` format)
-- 🔐 Encrypts snapshots using AES (at-rest protection)
-- 🧠 Learns normal device behavior over time (auto-profiling)
-- ⚠️ Detects anomalies via snapshot diffing
-- 🌐 Optionally uploads snapshots to secure cloud storage
-- 🧾 Maintains a live asset inventory — with no active scans
-- 🚨 Sends alerts when patterns break, even without threat intel
+### What It Does for OT Environments
 
----
+- **Passive Monitoring**: Captures snapshots of OT traffic without actively probing or scanning devices, ensuring no disruption to operations.
+- **Anomaly Detection**: Automatically learns normal device behavior over time and alerts when deviations occur, helping you spot potential issues without needing external threat intelligence.
+- **Zero Active Scans**: LineAlert avoids network scans, reducing the risk of overloading devices and systems.
+- **Asset Discovery**: Tracks OT assets with no need for active scanning, offering an up-to-date inventory of devices.
+- **Cloud Integration**: Uploads encrypted snapshots to cloud storage for backup, with optional access for analysis and long-term archiving.
 
-## 🔧 Key Modules
+### Key Modules for OT Use
 
-| File                  | Role                                  |
-|-----------------------|---------------------------------------|
-| `main.py`             | Orchestrates packet capture and flow  |
-| `asset_discovery.py`  | Tracks and updates live OT asset inventory |
-| `auto_profile.py`     | Builds behavioral baselines from `.lasnap` |
-| `send_alert.py`       | Triggers alerts via webhook or logs   |
-| `snapshot_viewer.py`  | CLI tool to decrypt and explore snapshots |
-| `snapshot_encryptor.py` | AES-based `.lasnap` protection     |
+| File                  | Role                                                   |
+| --------------------- | ------------------------------------------------------ |
+| `main.py`             | Orchestrates packet capture and flow                   |
+| `asset_discovery.py`  | Tracks and updates live OT asset inventory             |
+| `auto_profile.py`     | Builds behavioral baselines from .lasnap               |
+| `send_alert.py`       | Triggers alerts via webhook or logs                    |
+| `snapshot_viewer.py`  | CLI tool to decrypt and explore snapshots              |
+| `snapshot_encryptor.py`| AES-based .lasnap protection                          |
 
-Each module has a single concern.  
-Together, they operate like a **relational system** — assets, snapshots, profiles, and alerts flow like data between tables.
+LineAlert’s modular approach mirrors how OT systems work: each module plays a role in ensuring continuous, uninterrupted monitoring.
 
 ---
 
-## 🧠 Design Philosophy
+## For IT Professionals
 
-LineAlert is built using principles from both **software engineering** and **OT network architecture**:
+LineAlert is a cybersecurity tool designed for small municipalities that need a lightweight, easy-to-deploy solution to monitor their OT systems without overcomplicating their IT infrastructure. While LineAlert is targeted for OT environments, it can be seamlessly integrated with existing IT systems for comprehensive security monitoring.
 
-- **Separation of Concerns** → Each module has a distinct role, like services in a layered control system  
-- **Separation of Roles** → Mirrors real OT environments: sensor, logger, analyst, alert  
-- **Relational Thinking** → Inspired by the structure of relational databases, enabling composability and clarity
+### What It Does for IT Environments
 
-📄 Full breakdown in the [Technical Appendix](./TECHNICAL_APPENDIX.md)
+- **Low Overhead**: The tool is designed to be lightweight, requiring minimal configuration and maintenance, making it a good fit for IT professionals managing various infrastructure.
+- **AES Encryption**: Snapshots are encrypted to ensure sensitive OT data remains protected at rest, helping with compliance and data protection needs.
+- **Webhooks for Alerts**: IT professionals can integrate LineAlert into existing monitoring systems, with webhook-based alerting that can tie into SIEMs (Security Information and Event Management) or other IT management tools.
+- **Cloud Backup**: The tool offers secure, optional cloud storage for OT snapshots, providing a reliable backup system without complex IT overhead.
+- **Scalable**: LineAlert is designed to scale from small to mid-sized municipal deployments, offering flexibility as your IT infrastructure grows.
+
+### Key Modules for IT Integration
+
+| File                  | Role                                                   |
+| --------------------- | ------------------------------------------------------ |
+| `main.py`             | Orchestrates packet capture and flow                   |
+| `asset_discovery.py`  | Tracks and updates live OT asset inventory             |
+| `auto_profile.py`     | Builds behavioral baselines from .lasnap               |
+| `send_alert.py`       | Triggers alerts via webhook or logs                    |
+| `snapshot_viewer.py`  | CLI tool to decrypt and explore snapshots              |
+| `snapshot_encryptor.py`| AES-based .lasnap protection                          |
+
+LineAlert is modular and flexible, allowing IT teams to integrate it with their existing IT tools for added visibility and security.
 
 ---
 
-## 🔄 How It Works (High-Level Flow)
+## Design Philosophy
 
-```text
-[ Passive Packet Capture ]
-            ↓
-[ AES-encrypted .lasnap Snapshot ]
-            ↓
-[ Auto-Profile Behavior ]
-            ↓
-[ Diff Snapshot vs. Baseline ]
-            ↓
-[ Alert if Anomaly ]
-            ↓
-[ Optional Upload to Cloud Blob ]
-🚀 Getting Started
-Requirements:
+LineAlert is built using principles from both software engineering and OT network architecture:
 
-Python 3.8+
+- **Separation of Concerns** → Each module has a distinct role, like services in a layered control system.
+- **Separation of Roles** → Mirrors real OT environments: sensor, logger, analyst, alert.
+- **Relational Thinking** → Inspired by the structure of relational databases, enabling composability and clarity.
 
-scapy, cryptography, psutil, argparse, etc.
+---
 
-Quick Start:
+## Full Breakdown
 
-bash
-Copy
-Edit
-git clone https://github.com/yourhandle/linealert.git
-cd linealert
-pip install -r requirements.txt
-sudo python3 main.py --iface eth0
-Optional:
-Configure environment variables for AES key and cloud blob upload path.
+For a deeper dive into the design and functionality of LineAlert, please refer to the Technical appendix.
 
-🔭 Roadmap
- Auto-learn mode (adaptive profiling)
+## Disclaimer
 
- Snapshot diff scoring + severity ranking
+**LineAlert is a project currently in development.** While we are working hard to make it a fully functional and reliable cybersecurity tool, it is still a work in progress. Features, functionality, and documentation may change as we continue to refine and improve the tool. 
 
- Web-based viewer/dashboard (React or Flask)
-
- DNP3, BACnet protocol support
-
- Role inference (HMI / PLC / sensor tagging)
-
- CVE fingerprinting of legacy device behavior
-
-🤝 Feedback & Contributions
-LineAlert is FOSS and in active development.
-Pull requests, issue reports, and real-world OT test data are welcome.
-
-You can also contact me if you're an OT professional and want to stress test the pipeline or suggest features.
-
-📜 License
-Apache 2.0 — because tools like this should be free to build, use, and remix.
-
-⚠️ Disclaimer
-LineAlert is in early stages.
-Use at your own discretion in live OT environments — especially fragile or safety-critical networks.
-Always coordinate with plant engineers and network owners before deploying in production.
-
-
-
-Test auto-docs workflow
-
-<!-- testing testing 123 auto doc is working -->
+Please use LineAlert with caution in production environments, and always verify that it meets your specific operational and security needs before deployment.
