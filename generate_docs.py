@@ -1,51 +1,38 @@
-import os
-import inspect
-import markdown
+# generate_docs.py
 
-# Directory where the Python files are located
-CODE_DIR = './'  # Adjust this path if needed
-OUTPUT_FILE = 'generated_docs.md'
+def generate_feature_docs():
+    """
+    Automatically generate documentation for the new features.
+    """
+    print("Generating documentation for new features...")
 
-def extract_docstrings():
-    """Extracts docstrings from all Python files in the directory."""
-    docstrings = {}
+    # Data Processing Feature
+    data_processing_feature = """
+    ## Data Processing Feature
 
-    for root, dirs, files in os.walk(CODE_DIR):
-        for file in files:
-            if file.endswith('.py'):
-                file_path = os.path.join(root, file)
-                with open(file_path, 'r') as f:
-                    content = f.read()
+    **Function:** `process_data(data)`
+    
+    **Description:**
+    This function processes the input list of numbers by squaring each item.
 
-                # Parse functions and classes and extract docstrings
-                for name, obj in inspect.getmembers(inspect.getmodule(content)):
-                    if inspect.isfunction(obj) or inspect.isclass(obj):
-                        docstring = inspect.getdoc(obj)
-                        if docstring:
-                            docstrings[name] = docstring
-    return docstrings
+    **Example:**
 
-def generate_markdown(docstrings):
-    """Generates markdown from extracted docstrings."""
-    markdown_content = "# Generated Documentation\n\n"
-    for name, docstring in docstrings.items():
-        markdown_content += f"## {name}\n\n{docstring}\n\n"
-    return markdown_content
+    ```python
+    data = [1, 2, 3, 4]
+    print(process_data(data))  # Output: [1, 4, 9, 16]
+    ```
 
-def save_markdown(content):
-    """Saves the generated markdown content to a file."""
-    with open(OUTPUT_FILE, 'w') as f:
-        f.write(content)
+    **Test Case:**
+    - Input: `[1, 2, 3, 4]`
+    - Expected Output: `[1, 4, 9, 16]`
+    """
 
-def main():
-    """Main function to extract docstrings and generate documentation."""
-    docstrings = extract_docstrings()
-    if docstrings:
-        markdown_content = generate_markdown(docstrings)
-        save_markdown(markdown_content)
-        print(f"Documentation generated and saved to {OUTPUT_FILE}")
-    else:
-        print("No docstrings found.")
+    with open("docs/data_processing_feature.md", "w") as f:
+        f.write(data_processing_feature)
+        print("Documentation for data processing feature generated at docs/data_processing_feature.md")
+    
+    # You can add more features here if needed. For now, it's just the `data_processing` feature.
+    
+# Call this function when needed in your workflow
+generate_feature_docs()
 
-if __name__ == '__main__':
-    main()

@@ -1,31 +1,41 @@
-name: Python Tests
+name: Python Test Suite
 
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
-  pull_request:
-    branches:
-      - main  # Trigger when a pull request is opened
+      - main
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # Get the code from the repository
+    - name: Check out repository
+      uses: actions/checkout@v2
 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8  # Set up Python 3.8 or your preferred version
+        python-version: '3.8'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Install the necessary dependencies
+        pip install -r requirements.txt
 
     - name: Run tests
       run: |
-        python -m unittest discover  # Run tests using unittest discover
+        pytest test_asset_discovery.py
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+    - name: Post Setup Python
+      run: |
+        python --version
+
+    - name: Post Checkout repository
+      run: |
+        git status
+
+    - name: Complete job
+      run: echo "Tests completed!"

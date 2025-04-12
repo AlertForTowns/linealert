@@ -1,41 +1,38 @@
-name: Auto-Generate Documentation
+name: Auto-generate Documentation
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  # Trigger when changes are pushed to the main branch
 
 jobs:
   generate_docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Run on Ubuntu
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2  # Check out the code
 
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.10'  # Set Python version
 
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
-        pip install openai  # For ChatGPT API integration
-        pip install markdown  # Optional: if you plan to update markdown files
+        python -m pip install --upgrade pip  # Upgrade pip
+        pip install -r requirements.txt  # Install dependencies
 
     - name: Generate documentation with ChatGPT
       run: |
-        python3 generate_docs.py  # This will be a Python script you create to handle doc generation
+        python .github/generate_docs.py  # Run the Python script to generate documentation
 
     - name: Commit documentation updates
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "GitHub Actions"
-        git add .
-        git commit -m "Update documentation"
-        git push
-
+        git config --global user.email "you@example.com"  # Replace with your email
+        git config --global user.name "Your Name"  # Replace with your name
+        git add .  # Add all new or updated files
+        git commit -m "Update documentation"  # Commit the changes
+        git push  # Push the changes back to GitHub
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token to allow push to the repo
