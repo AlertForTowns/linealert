@@ -1,51 +1,43 @@
 import os
-import inspect
-import markdown
 
-# Directory where the Python files are located
-CODE_DIR = './'  # Adjust this path if needed
-OUTPUT_FILE = 'generated_docs.md'
+def generate_documentation(directory):
+    # Start with an empty docstring content
+    docstring_content = ""
 
-def extract_docstrings():
-    """Extracts docstrings from all Python files in the directory."""
-    docstrings = {}
+    # Walk through the directory to get Python files
+    for filename in os.listdir(directory):
+        if filename.endswith(".py"):  # Only process Python files
+            file_path = os.path.join(directory, filename)
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
 
-    for root, dirs, files in os.walk(CODE_DIR):
-        for file in files:
-            if file.endswith('.py'):
-                file_path = os.path.join(root, file)
-                with open(file_path, 'r') as f:
-                    content = f.read()
+            docstring = None
+            in_docstring = False
+            for line in lines:
+                # Check for docstring start and end
+                if '"""' in line:
+                    if not in_docstring:
+                        in_docstring = True
+                        docstring = ""
+                    else:
+                        in_docstring = False
+                        docstring_content += f"#### Docstrings:\n\n{docstring}\n\n"
+                elif in_docstring:
+                    docstring += line.strip()
 
-                # Parse functions and classes and extract docstrings
-                for name, obj in inspect.getmembers(inspect.getmodule(content)):
-                    if inspect.isfunction(obj) or inspect.isclass(obj):
-                        docstring = inspect.getdoc(obj)
-                        if docstring:
-                            docstrings[name] = docstring
-    return docstrings
+    # Write the docstring content to a documentation file
+    with open("documentation_output.md", "w") as doc_file:
+        doc_file.write(docstring_content)
 
-def generate_markdown(docstrings):
-    """Generates markdown from extracted docstrings."""
-    markdown_content = "# Generated Documentation\n\n"
-    for name, docstring in docstrings.items():
-        markdown_content += f"## {name}\n\n{docstring}\n\n"
-    return markdown_content
-
-def save_markdown(content):
-    """Saves the generated markdown content to a file."""
-    with open(OUTPUT_FILE, 'w') as f:
-        f.write(content)
-
-def main():
-    """Main function to extract docstrings and generate documentation."""
-    docstrings = extract_docstrings()
-    if docstrings:
-        markdown_content = generate_markdown(docstrings)
-        save_markdown(markdown_content)
-        print(f"Documentation generated and saved to {OUTPUT_FILE}")
+    # Add the testing comment to README
+    readme_file = "README.md"
+    if os.path.exists(readme_file):
+        with open(readme_file, "a") as file:
+            file.write("\n<!-- testing testing 123 auto doc is working -->\n")
+            print(f"Temporary comment added to {readme_file}")
     else:
-        print("No docstrings found.")
+        print("README.md not found!")
 
-if __name__ == '__main__':
-    main()
+
+# Call the function to generate documentation
+generate_documentation(".")
