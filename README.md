@@ -1,5 +1,7 @@
 # LineAlert
 
+[![Auto-Generated Docs](https://img.shields.io/badge/docs-generated-blue.svg)](./documentation_output.md)
+
 ## Overview
 
 LineAlert is a comprehensive cybersecurity monitoring tool designed to protect public-serving infrastructure, such as municipal water systems and solar fields, through passive, field-ready monitoring. This tool focuses on providing small municipalities with affordable, reliable, and cutting-edge cybersecurity solutions.
