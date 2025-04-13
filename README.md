@@ -76,6 +76,15 @@ LineAlert is built using principles from both software engineering and OT networ
 
 For a deeper dive into the design and functionality of LineAlert, please refer to the Technical appendix.
 
+
+## 💬 Community Feedback
+
+LineAlert is shaped by real-world feedback from sysadmins, OT techs, and cybersecurity professionals.
+
+📖 [Read the feedback →](./COMMUNITY_FEEDBACK.md)
+
+
+
 ## Disclaimer
 
 **LineAlert is a project currently in development.** While we are working hard to make it a fully functional and reliable cybersecurity tool, it is still a work in progress. Features, functionality, and documentation may change as we continue to refine and improve the tool. 
