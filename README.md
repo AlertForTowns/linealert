@@ -81,8 +81,7 @@ For a deeper dive into the design and functionality of LineAlert, please refer t
 
 LineAlert is shaped by real-world feedback from sysadmins, OT techs, and cybersecurity professionals.
 
-📖 [Read the feedback →](./COMMUNITY_FEEDBACK.md)
-
+📖 [Read the feedback →](docs/COMMUNITY_FEEDBACK.md)
 
 
 ## Disclaimer
