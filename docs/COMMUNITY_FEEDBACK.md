@@ -25,10 +25,10 @@
 > "Got three thumbs up from a programmer after reviewing the architecture."  
 > – Internal team feedback
 
-> "We used to do traffic profiling back in the day — this makes perfect sense."  
+> "We used to do traffic profiling back in the day — this is a field-proven method."  
 > – Senior IT Systems Administrator
 
-> "Great work. Let me know when I can review the repo."  
+> "Great work. I’m busy now, but I’m going to make time for this in a few weeks."  
 > – OT Security Professional (Reddit)
 
 ---
