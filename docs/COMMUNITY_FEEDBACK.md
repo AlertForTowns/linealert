@@ -25,6 +25,12 @@
 > "Got three thumbs up from a programmer after reviewing the architecture."  
 > – Internal team feedback
 
+> "We used to do traffic profiling back in the day — this makes perfect sense."  
+> – Senior IT Systems Administrator
+
+> "Great work. Let me know when I can review the repo."  
+> – OT Security Professional (Reddit)
+
 ---
 
 *Want to share your thoughts or suggestions? Reach out via GitHub Issues or join the discussion on Reddit and LinkedIn.*
