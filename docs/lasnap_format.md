@@ -53,3 +53,26 @@ Maintaining consistency in this format ensures compatibility across modules like
   "event": "none",
   "severity": "low"
 }
+🚦 Future Compatibility
+This schema may evolve to support:
+
+Asset metadata (e.g., firmware version, vendor ID)
+
+Layer 2/3 traffic summaries
+
+Multi-device rollups (per snapshot)
+
+✅ Action for Contributors
+Ensure all .lasnap files written by any LineAlert component adhere to this schema.
+
+Use this as a baseline for creating mock data, testing pipelines, and validating snapshots.
+
+This document is versioned and subject to refinement as the LineAlert platform matures.
+
+yaml
+Copy
+Edit
+
+---
+
+Let me know if you want to link this in your README, validate `.lasnap` files on ingest, or just keep buildi
