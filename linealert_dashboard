@@ -1,0 +1,53 @@
+import streamlit as st
+import pandas as pd
+import json
+from pathlib import Path
+
+st.set_page_config(layout="wide")
+
+st.title("📊 LineAlert Snapshot Insights")
+
+# Snapshot Insights
+st.header("Function Code Changes Detected")
+change_log_path = Path("baseline_change_log.json")
+if change_log_path.exists():
+    with change_log_path.open() as f:
+        changes = json.load(f)
+        df_changes = pd.DataFrame(changes)
+        st.dataframe(df_changes)
+else:
+    st.warning("No change log data found.")
+
+# Live Stats
+with st.sidebar:
+    st.subheader("Live Device Stats")
+    if change_log_path.exists() and len(changes) > 0:
+        device_counts = pd.DataFrame(changes)["device"].value_counts()
+        for device, count in device_counts.items():
+            st.markdown(f"**{device} Updates**")
+            st.write(count)
+    else:
+        st.info("No updates recorded yet.")
+
+# Summary Chart
+st.subheader("📈 Summary by Date and Device")
+if change_log_path.exists() and len(changes) > 0:
+    df_changes["date"] = pd.to_datetime(df_changes["timestamp"]).dt.date
+    summary = df_changes.groupby(["date", "device"]).size().unstack(fill_value=0)
+    st.bar_chart(summary)
+else:
+    st.info("No data available for summary chart.")
+
+# 🚨 Alerts Section
+st.header("🚨 Active Alerts")
+alert_path = Path("alerts/alert_log.jsonl")
+if alert_path.exists():
+    alert_lines = alert_path.read_text().strip().split("\n")
+    alert_data = [json.loads(line) for line in alert_lines if line]
+    df_alerts = pd.DataFrame(alert_data)
+    if not df_alerts.empty:
+        st.dataframe(df_alerts)
+    else:
+        st.success("No alerts at this time.")
+else:
+    st.info("Alert log not found.")

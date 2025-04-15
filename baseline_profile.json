@@ -1,8 +1,14 @@
 {
-  "device": "Simulated PLC-1",
-  "protocol": "Modbus",
-  "allowed_events": [
-    "Read coil",
-    "Write register"
+  "allowed_function_codes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    15,
+    16,
+    43,
+    99
   ]
 }

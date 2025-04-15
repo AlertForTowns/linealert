@@ -1,0 +1,9 @@
+{"timestamp": "2025-04-14T19:35:39.493985Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 6 is new", "severity": "warning", "snapshot": "snapshot_2.lasnap"}
+{"timestamp": "2025-04-14T19:35:41.498193Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 99 is new", "severity": "warning", "snapshot": "snapshot_3.lasnap"}
+{"timestamp": "2025-04-14T19:35:41.498641Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 99 is highly unusual", "severity": "critical", "snapshot": "snapshot_3.lasnap"}
+{"timestamp": "2025-04-14T19:35:43.502254Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 7 is new", "severity": "warning", "snapshot": "snapshot_4.lasnap"}
+{"timestamp": "2025-04-14T19:35:43.502573Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 8 is new", "severity": "warning", "snapshot": "snapshot_4.lasnap"}
+{"timestamp": "2025-04-14T19:47:58.954727Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 1 is new", "severity": "warning", "snapshot": "suspicious_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:47:58.955067Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 43 is new", "severity": "warning", "snapshot": "suspicious_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:56:50.011599Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 43 is new", "severity": "warning", "snapshot": "sample_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:56:50.011894Z", "device": "PLC-1", "type": "Anomaly", "message": "Function code 99 is new", "severity": "warning", "snapshot": "sample_snapshot.lasnap"}

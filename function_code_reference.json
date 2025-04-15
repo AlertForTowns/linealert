@@ -1,0 +1,18 @@
+{
+  "1": {
+    "name": "Read Coils",
+    "risk": "Can expose the state of outputs; attacker can learn system behavior."
+  },
+  "5": {
+    "name": "Write Single Coil",
+    "risk": "Can toggle physical outputs — a major attack surface in actuators."
+  },
+  "43": {
+    "name": "Encapsulated Interface Transport",
+    "risk": "Rarely used. Presence may indicate protocol tunneling or malicious commands."
+  },
+  "99": {
+    "name": "Unknown / Reserved",
+    "risk": "Not part of the official Modbus spec. May indicate fuzzing or rogue device."
+  }
+}

@@ -1,36 +1,25 @@
-# view_snapshot.py
-import json
 import argparse
+import json
+import os
 
-def display_snapshot(snapshot_path):
-    try:
-        with open(snapshot_path, 'r') as f:
-            data = json.load(f)
+parser = argparse.ArgumentParser(description="LineAlert Snapshot Viewer")
+parser.add_argument('--input', required=True, help='Path to .lasnap snapshot file')
+args = parser.parse_args()
 
-        print("\n====== LineAlert Snapshot Viewer ======\n")
-        print(f"📅 Timestamp : {data.get('timestamp', 'N/A')}")
-        print(f"🖥️ Device    : {data.get('device', 'N/A')}")
-        print(f"🔌 Protocol  : {data.get('protocol', 'N/A')}")
-        print(f"⚠️  Event     : {data.get('event', 'N/A')}")
-        
-        severity = data.get('severity', 'N/A').lower()
-        if severity in ['high', 'critical']:
-            print(f"🚨 Severity  : {severity.upper()} ⚠️")
-        else:
-            print(f"🟢 Severity  : {severity.capitalize()}")
+if not os.path.exists(args.input):
+    print("[!] File not found.")
+    exit(1)
 
-        print("\n=======================================\n")
+with open(args.input, 'r') as f:
+    data = json.load(f)
 
-    except FileNotFoundError:
-        print("[!] File not found.")
-    except json.JSONDecodeError:
-        print("[!] Invalid JSON file.")
-    except Exception as e:
-        print(f"[!] Error: {str(e)}")
+print("\n====== LineAlert Snapshot Viewer ======\n")
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="View a LineAlert snapshot file.")
-    parser.add_argument("--input", required=True, help="Path to the .json snapshot file")
-    args = parser.parse_args()
+print("📅 Timestamp :", data.get("timestamp", "N/A"))
+print("🖥️ Device    :", data.get("device", "N/A"))
+print("🔌 Protocol  :", data.get("protocol", "N/A"))
+print("⚠️  Status    :", data.get("status", "N/A"))
+print("📦 Packets   :", data.get("packets", "N/A"))
+print("🟢 Severity  :", data.get("severity", "N/A"))
 
-    display_snapshot(args.input)
+print("\n=======================================\n")

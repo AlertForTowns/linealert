@@ -1,18 +1,27 @@
-"""
-Main entry point for the LineAlert application.
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from datetime import datetime
 
-This script initializes the necessary components, loads configurations, 
-and starts the main functionality of the LineAlert service.
+app = FastAPI()
 
-Functions:
-    - main: Initializes the system and runs the LineAlert service.
-"""
+@app.get("/")
+def root():
+    return {"message": "LineAlert Config Server is running"}
 
-def main():
-    """
-    Initializes the LineAlert system and starts its main functions.
-    
-    This function loads configurations, sets up required services, 
-    and begins the process of monitoring for anomalies and handling alerts.
-    """
-    pass
+@app.post("/api/init")
+async def init_config(request: Request):
+    body = await request.json()
+    device_id = body.get("device_id", "unknown")
+    hostname = body.get("hostname", "unknown")
+    timestamp = datetime.utcnow().isoformat() + "Z"
+
+    config = {
+        "device_id": device_id,
+        "hostname": hostname,
+        "timestamp": timestamp,
+        "update_available": False,
+        "allowed_function_codes": [3, 4, 5]
+    }
+
+    print(f"[+] INIT: {device_id} ({hostname}) checked in at {timestamp}")
+    return JSONResponse(content=config)

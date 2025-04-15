@@ -1,0 +1,28 @@
+# linealert/modbus_signatures.yaml
+
+signatures:
+  - function_code: 43
+    description: "Read Device Identification - used in reconnaissance"
+    severity: "medium"
+  - function_code: 8
+    subfunction: 10
+    description: "Diagnostic: Clear Counters - potential service disruption"
+    severity: "high"
+  - function_code: 17
+    description: "Report Slave ID - used for device fingerprinting"
+    severity: "low"
+  - function_code: 23
+    description: "Read/Write Multiple Registers - can be abused to alter settings"
+    severity: "high"
+  - function_code: 24
+    description: "Read FIFO Queue - data exfiltration risk"
+    severity: "medium"
+  - function_code: 20
+    description: "Read File Record - may be used for unauthorized access"
+    severity: "medium"
+  - function_code: 21
+    description: "Write File Record - may be used for unauthorized control"
+    severity: "high"
+  - function_code: 22
+    description: "Mask Write Register - allows precise control, risk of manipulation"
+    severity: "high"

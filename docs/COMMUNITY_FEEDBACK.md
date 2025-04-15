@@ -33,4 +33,7 @@
 
 ---
 
+> 🚧 LineAlert is under active development. Expect rapid iteration, bug fixes, and ongoing improvements. We welcome feedback, testers, and contributors as we build a safer OT future.
+
 *Want to share your thoughts or suggestions? Reach out via GitHub Issues or join the discussion on Reddit and LinkedIn.*
+

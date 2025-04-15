@@ -1,1 +1,6 @@
-{"device": "PLC-1", "status": "active", "packets": 340}
+{
+  "device": "PLC-1",
+  "status": "active",
+  "packets": 340,
+  "function_codes": [3, 43, 99]
+}

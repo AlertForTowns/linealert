@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Create the docs directory if it doesn't exist
+mkdir -p docs
+
+# Move and rename docs
+mv "TECHNICAL_APPENDIX.md" docs/technical_appendix.md
+mv "Real-World_Consequences_of_OT_Security_Breaches.md" docs/real_world_consequences.md
+mv "How LineAlert Compares: Big Tech vs. Practical Protection" docs/comparison.md
+mv "roadmap.md" docs/roadmap.md
+mv "what_is_ot.md" docs/what_is_ot.md
+
+# Optional: move the auto-generated docs
+if [ -f "documentation_output.md" ]; then
+    mv "documentation_output.md" docs/auto_generated.md
+fi
+
+echo "✅ All documentation files have been moved to the docs/ folder!"

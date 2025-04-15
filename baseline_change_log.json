@@ -1,0 +1,17 @@
+[
+  {
+    "timestamp": "2025-04-14T20:05:22Z",
+    "device": "PLC-1",
+    "new_function_code": 43,
+    "action": "auto-learned",
+    "source_snapshot": "sample_snapshot.lasnap"
+  }
+]
+{"timestamp": "2025-04-14T19:35:39.493813", "device": "PLC-1", "new_function_code": 6, "action": "auto-learned", "source_snapshot": "snapshot_2.lasnap"}
+{"timestamp": "2025-04-14T19:35:41.498034", "device": "PLC-1", "new_function_code": 99, "action": "auto-learned", "source_snapshot": "snapshot_3.lasnap"}
+{"timestamp": "2025-04-14T19:35:43.502073", "device": "PLC-1", "new_function_code": 7, "action": "auto-learned", "source_snapshot": "snapshot_4.lasnap"}
+{"timestamp": "2025-04-14T19:35:43.502440", "device": "PLC-1", "new_function_code": 8, "action": "auto-learned", "source_snapshot": "snapshot_4.lasnap"}
+{"timestamp": "2025-04-14T19:47:58.954524", "device": "PLC-1", "new_function_code": 1, "action": "auto-learned", "source_snapshot": "suspicious_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:47:58.954981", "device": "PLC-1", "new_function_code": 43, "action": "auto-learned", "source_snapshot": "suspicious_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:56:50.011443", "device": "PLC-1", "new_function_code": 43, "action": "auto-learned", "source_snapshot": "sample_snapshot.lasnap"}
+{"timestamp": "2025-04-14T19:56:50.011759", "device": "PLC-1", "new_function_code": 99, "action": "auto-learned", "source_snapshot": "sample_snapshot.lasnap"}

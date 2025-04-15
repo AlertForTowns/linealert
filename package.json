@@ -1,0 +1,32 @@
+{
+  "name": "linealert",
+  "version": "1.0.0",
+  "description": "LineAlert - Snapshot Viewer and OT Security Tool",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "Anthony Edgar",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "formidable": "^3.5.2",
+    "multer": "^1.4.5-lts.1",
+    "next": "latest",
+    "next-connect": "^1.0.0",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.4.1",
+    "typescript": "latest"
+  }
+}

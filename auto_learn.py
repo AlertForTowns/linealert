@@ -1,42 +1,51 @@
 import argparse
 import json
+from signature_matcher import load_signatures, check_signatures
 
-def load_json(file_path):
-    with open(file_path, 'r') as f:
+def load_snapshot(snapshot_path):
+    with open(snapshot_path, "r") as f:
         return json.load(f)
 
-def save_json(data, file_path):
-    with open(file_path, 'w') as f:
-        json.dump(data, f, indent=2)
+def load_baseline(baseline_path):
+    try:
+        with open(baseline_path, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
-def auto_learn(snapshot_file, baseline_file):
-    snapshot = load_json(snapshot_file)
-    baseline = load_json(baseline_file)
+def save_baseline(baseline_path, baseline_data):
+    with open(baseline_path, "w") as f:
+        json.dump(baseline_data, f, indent=2)
 
-    event = snapshot.get("event")
-    allowed_events = baseline.get("allowed_events", [])
+def compare_to_baseline(snapshot, baseline):
+    device = snapshot["device"]
+    snapshot_codes = set(snapshot.get("function_codes", []))
+    baseline_codes = set(baseline.get(device, []))
 
-    print("\n===== Auto-Learn Review =====")
-    print(f"Event: {event}")
-    print(f"Currently Allowed Events: {allowed_events}")
-    print("==============================")
-
-    if event in allowed_events:
-        print("[✓] Event already in baseline. No action needed.")
-    else:
-        decision = input(f"\nAdd '{event}' to baseline? (y/N): ").strip().lower()
-        if decision == 'y':
-            allowed_events.append(event)
-            baseline["allowed_events"] = allowed_events
-            save_json(baseline, baseline_file)
-            print("[+] Event added to baseline.")
-        else:
-            print("[!] No changes made to baseline.")
+    new_codes = snapshot_codes - baseline_codes
+    return list(new_codes)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Auto-learn from a snapshot.")
-    parser.add_argument("--snapshot", required=True, help="Path to decrypted snapshot JSON.")
-    parser.add_argument("--baseline", required=True, help="Path to baseline profile JSON.")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--snapshot", required=True, help="Path to snapshot file")
+    parser.add_argument("--baseline", default="baseline.json", help="Path to baseline file")
     args = parser.parse_args()
 
-    auto_learn(args.snapshot, args.baseline)
+    snapshot = load_snapshot(args.snapshot)
+    baseline = load_baseline(args.baseline)
+    signatures = load_signatures()
+
+    new_behavior = compare_to_baseline(snapshot, baseline)
+
+    # Signature-based detection
+    sig_match = check_signatures(snapshot, signatures)
+
+    if sig_match:
+        print(f"🚨 Signature Match: Function Code {sig_match['matched_code']} ({sig_match['severity'].upper()})")
+        print(f"📝 Description: {sig_match['description']}")
+    elif new_behavior:
+        print(f"📈 New behavior detected for {snapshot['device']}: {new_behavior}")
+        baseline[snapshot["device"]] = list(set(baseline.get(snapshot["device"], [])) | set(new_behavior))
+        save_baseline(args.baseline, baseline)
+    else:
+        print("✅ No new behavior detected. Baseline remains unchanged.")
