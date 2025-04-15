@@ -1,1 +1,3 @@
-{"device": "PLC-1", "code": 99, "severity": "critical", "description": "Test alert injection", "timestamp": "2025-04-14T20:01:27.704664Z"}
+{"timestamp": "2025-04-15T14:03:21Z", "device": "PLC-101", "issue": "Unauthorized Function Code", "severity": "high"}
+{"timestamp": "2025-04-15T14:06:45Z", "device": "RTU-22", "issue": "Unexpected Write Request", "severity": "medium"}
+{"timestamp": "2025-04-15T14:12:08Z", "device": "SCADA-HMI", "issue": "Failed Login Attempt", "severity": "low"}
