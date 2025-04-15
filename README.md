@@ -77,6 +77,11 @@ LineAlert is built using principles from both software engineering and OT networ
 For a deeper dive into the design and functionality of LineAlert, please refer to the Technical appendix.
 
 
+## 📸 Dashboard Preview
+
+![LineAlert Dashboard](https://raw.githubusercontent.com/AlertForTowns/linealert/main/docs/dashboard.png)
+
+
 ## 💬 Community Feedback
 
 LineAlert is shaped by real-world feedback from sysadmins, OT techs, and cybersecurity professionals.
