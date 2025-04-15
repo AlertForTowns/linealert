@@ -39,3 +39,4 @@ coverage.xml
 
 # Ignore LineAlert snapshot files
 *.lasnap
+.next/
