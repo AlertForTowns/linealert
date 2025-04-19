@@ -1,0 +1,7 @@
+[2025-04-17 04:43:31] DRIFT DETECTED
+  Device: 192.168.1.42, Function: read_coils, Drift: 30.0% (Baseline: 100, Current: 130, Type: upward)
+  Device: 192.168.1.42, Function: write_single_register, Drift: 40.0% (Baseline: 50, Current: 30, Type: downward)
+  Device: 192.168.1.42, Function: read_holding_registers, Drift: 20.0% (Baseline: 75, Current: 90, Type: upward)
+  Device: 192.168.1.10, Function: read_coils, Drift: 6.25% (Baseline: 80, Current: 85, Type: upward)
+  Device: 192.168.1.10, Function: write_single_register, Drift: 37.5% (Baseline: 40, Current: 25, Type: downward)
+  Total Drift Score: 26.75%

@@ -1,51 +1,37 @@
-import argparse
 import json
-from signature_matcher import load_signatures, check_signatures
+import os
 
 def load_snapshot(snapshot_path):
     with open(snapshot_path, "r") as f:
         return json.load(f)
 
-def load_baseline(baseline_path):
-    try:
-        with open(baseline_path, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+def auto_learn(snapshot_path):
+    print(f"[*] Loading snapshot from {snapshot_path}")
+    snapshot = load_snapshot(snapshot_path)
 
-def save_baseline(baseline_path, baseline_data):
-    with open(baseline_path, "w") as f:
-        json.dump(baseline_data, f, indent=2)
+    keys = set()
 
-def compare_to_baseline(snapshot, baseline):
-    device = snapshot["device"]
-    snapshot_codes = set(snapshot.get("function_codes", []))
-    baseline_codes = set(baseline.get(device, []))
+    # If it's a dict, treat it as one record
+    if isinstance(snapshot, dict):
+        keys.update(snapshot.keys())
 
-    new_codes = snapshot_codes - baseline_codes
-    return list(new_codes)
+    # If it's a list, iterate through and gather keys
+    elif isinstance(snapshot, list):
+        for record in snapshot:
+            if isinstance(record, dict):
+                keys.update(record.keys())
+            else:
+                print(f"[!] Skipping non-dict record: {record}")
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--snapshot", required=True, help="Path to snapshot file")
-    parser.add_argument("--baseline", default="baseline.json", help="Path to baseline file")
-    args = parser.parse_args()
-
-    snapshot = load_snapshot(args.snapshot)
-    baseline = load_baseline(args.baseline)
-    signatures = load_signatures()
-
-    new_behavior = compare_to_baseline(snapshot, baseline)
-
-    # Signature-based detection
-    sig_match = check_signatures(snapshot, signatures)
-
-    if sig_match:
-        print(f"🚨 Signature Match: Function Code {sig_match['matched_code']} ({sig_match['severity'].upper()})")
-        print(f"📝 Description: {sig_match['description']}")
-    elif new_behavior:
-        print(f"📈 New behavior detected for {snapshot['device']}: {new_behavior}")
-        baseline[snapshot["device"]] = list(set(baseline.get(snapshot["device"], [])) | set(new_behavior))
-        save_baseline(args.baseline, baseline)
     else:
-        print("✅ No new behavior detected. Baseline remains unchanged.")
+        print("[!] Unknown snapshot format")
+        return
+
+    print(f"[✓] Snapshot contains keys: {', '.join(keys)}")
+
+    os.makedirs("profiles", exist_ok=True)
+    profile_path = f"profiles/profile_auto_{os.path.basename(snapshot_path)}.json"
+    with open(profile_path, "w") as f:
+        json.dump({"learned_keys": list(keys)}, f, indent=2)
+
+    print(f"[✓] Auto-learn profile saved to {profile_path}")

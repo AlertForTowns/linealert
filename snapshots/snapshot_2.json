@@ -1,0 +1,21 @@
+{
+  "devices": [
+    {
+      "ip": "192.168.1.42",
+      "functions": [
+        {
+          "function_code": "read_coils",
+          "count": 130
+        },
+        {
+          "function_code": "write_single_register",
+          "count": 30
+        },
+        {
+          "function_code": "read_holding_registers",
+          "count": 90
+        }
+      ]
+    }
+  ]
+}

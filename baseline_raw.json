@@ -1,0 +1,15 @@
+{
+  "192.168.1.42": {
+    "function_calls": {
+      "read_coils": 100,
+      "write_single_register": 50,
+      "read_holding_registers": 75
+    }
+  },
+  "192.168.1.10": {
+    "function_calls": {
+      "read_coils": 80,
+      "write_single_register": 40
+    }
+  }
+}
